@@ -1,21 +1,18 @@
 spring:
   datasource:
-    url: ${DATABASE_URL:jdbc:h2:mem:lexzip;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE}
-    username: ${DATABASE_USERNAME:sa}
+    url: ${DATABASE_URL:jdbc:mysql://127.0.0.1:3306/lexindia_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Kolkata}
+    username: ${DATABASE_USERNAME:root}
     password: ${DATABASE_PASSWORD:}
-    driver-class-name: ${DATABASE_DRIVER:org.h2.Driver}
+    driver-class-name: ${DATABASE_DRIVER:com.mysql.cj.jdbc.Driver}
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: none
     properties:
       hibernate:
         format_sql: true
     open-in-view: false
   flyway:
     enabled: true
-  h2:
-    console:
-      enabled: true
 
 server:
   port: ${SERVER_PORT:8080}

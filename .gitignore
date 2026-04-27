@@ -1,1 +1,5 @@
 legacy-js-backend/
+target/
+*.log
+.env
+.env.*

@@ -39,14 +39,14 @@ public class AuthService {
         profile.setEmail(request.email().trim().toLowerCase());
         profile.setFullName(request.fullName().trim());
         profile.setRole(Role.fromValue(request.role()));
-        profileRepository.save(profile);
+        Profile savedProfile = profileRepository.saveAndFlush(profile);
 
         AppUser user = new AppUser();
-        user.setProfile(profile);
+        user.setProfile(savedProfile);
         user.setPasswordHash(passwordEncoder.encode(request.password()));
-        appUserRepository.save(user);
+        appUserRepository.saveAndFlush(user);
 
-        return createSession(profile);
+        return createSession(savedProfile);
     }
 
     @Transactional
